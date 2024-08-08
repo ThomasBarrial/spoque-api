@@ -62,8 +62,8 @@ Create a .env file in the root directory based on the .env.example file.
 
 .env.example :
 
-    DATABASE_URL="postgresql:"//myuser:user_password@localhost:5432/mydatabase?schema=public"
-    JWT_SECRET=jwt_secret_key
+    DATABASE_URL="postgresql://myuser:[YOURPASSAWORD]@localhost:5432/mydatabase?schema=public"
+    JWT_SECRET=[YOUR JWT SECRET]
 
 Run Prisma migrations:
 
@@ -76,6 +76,8 @@ Launch the dataBase and Adminer:
 Start the API
 
     yarn dev
+
+/-
 
     yarn start (lauch prisma migration)
 
