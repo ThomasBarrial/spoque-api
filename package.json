@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --exit-child ./src/server.ts",
     "start": "npx prisma generate && ts-node ./src/server.ts"
   },
   "keywords": [],
@@ -17,6 +16,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "prettier": "^3.3.3",
     "prisma": "^5.18.0"
   },
   "devDependencies": {
