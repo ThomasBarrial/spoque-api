@@ -3,117 +3,89 @@
 Welcome to SecureAPI, a basic API project featuring a robust login system using Node.js, TypeScript, Express, Prisma, and Docker. This project demonstrates a secure and scalable backend architecture, perfect for kickstarting your next Node.js project.
 🚀 Features
 
-    User Authentication: Secure login system with JWT-based authentication.
-    Prisma ORM: Seamless database integration using Prisma.
-    TypeScript: Strongly typed codebase for better reliability.
-    Express: Lightweight and flexible Node.js framework.
-    Docker: Containerized environment for easy deployment and consistency.
-    Environment Variables: Configurable environment for different stages of development.
+- User Authentication: Secure login system with JWT-based authentication.
+- Prisma ORM: Seamless database integration using Prisma.
+- TypeScript: Strongly typed codebase for better reliability.
+- Express: Lightweight and flexible Node.js framework.
+- Docker: Containerized environment for easy deployment and consistency.
+- Environment Variables: Configurable environment for different stages of development.
 
 🛠️ Stack
 
-    Node.js
-    Express
-    TypeScript
-    Prisma
-    JWT
-    Docker
+- Node.js
+- Express
+- TypeScript
+- Prisma
+- JWT
+- Docker
 
 📁 Project Structure
 
-bash
-
-├── src
-│ ├── controllers
-│ │ └── authController.ts # Authentication logic
-│ ├── middleware
-│ │ └── authMiddleware.ts # Authentication middleware
-│ ├── routes
-│ │ └── authRoutes.ts # API routes for authentication
-│ ├── services
-│ │ └── authService.ts # Service for handling auth operations
-│ ├── prisma
-│ │ └── schema.prisma # Prisma schema for DB models
-│ └── app.ts # Express app setup
-├── Dockerfile # Docker configuration
-├── docker-compose.yml # Docker Compose setup
-├── .env.example # Example environment variables
-└── README.md # Project documentation
+    ├── src
+    │ ├── controllers
+    │ │ └── authController.ts # Authentication logic
+    │ ├── middleware
+    │ │ └── authMiddleware.ts # Authentication middleware
+    │ ├── routes
+    │ │ └── authRoutes.ts # API routes for authentication
+    │ ├── services
+    │ │ └── authService.ts # Service for handling auth operations
+    │ ├── prisma
+    │ │ └── schema.prisma # Prisma schema for DB models
+    │ └── app.ts # Express app setup
+    ├── Dockerfile # Docker configuration
+    ├── docker-compose.yml # Docker Compose setup
+    ├── .env.example # Example environment variables
+    └── README.md # Project documentation
 
 🏗️ Getting Started
 Prerequisites
 
-    Node.js v14.x or later
-    Docker & Docker Compose
-    Prisma CLI
+Node.js v20.x or later
+Docker & Docker Compose
+Prisma CLI
 
 Installation
+Clone the repository
 
-    Clone the repository:
+    git clone https://github.com/ThomasBarrial/spoque-api.git
 
-    bash
-
-git clone https://github.com/yourusername/secureapi.git
-cd secureapi
+    cd spoque-api
 
 Install dependencies:
 
-bash
-
-npm install
+    yarn
 
 Set up environment variables:
 
 Create a .env file in the root directory based on the .env.example file.
 
+.env.example :
+
+    DATABASE_URL="postgresql:"//myuser:user_password@localhost:5432/mydatabase?schema=public"
+    JWT_SECRET=jwt_secret_key
+
 Run Prisma migrations:
 
-bash
+    npx prisma migrate dev
 
-npx prisma migrate dev
-
-Start the application:
-
-bash
+Launch the dataBase and Adminer:
 
     docker-compose up
 
-    Access the API:
+Start the API
 
-    The API will be available at http://localhost:3000.
+    yarn dev
+
+    yarn start (lauch prisma migration)
 
 🧪 Usage
 
-    Register a new user:
-
-    bash
-
+Register a new user:
 POST /auth/register
 
 Login with an existing user:
+POST /auth/login
 
-bash
-
-    POST /auth/login
-
-    Access protected routes:
-
-    Use the JWT token provided after login to access protected routes.
-
-🚧 Roadmap
-
-Add role-based access control (RBAC)
-Integrate refresh token system
-Implement password recovery feature
-
-     Add more comprehensive testing
-
-🤝 Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request for review.
-📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-🛡️ Security
-
-If you discover any security-related issues, please contact the maintainer directly.
+Access protected routes:
+Use the JWT token provided after login to access protected routes.
