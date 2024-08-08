@@ -1,7 +1,7 @@
 🔐 SecureAPI - Basic Authentication System
 
-Welcome to SecureAPI, a basic API project featuring a robust login system using Node.js, TypeScript, Express, Prisma, and Docker. This project demonstrates a secure and scalable backend architecture, perfect for kickstarting your next Node.js project.
-🚀 Features
+Welcome to SpoqueApi, a basic API project featuring a login system using Node.js, TypeScript, Express, Prisma, and Docker. This project demonstrates a secure and scalable backend architecture, perfect for kickstarting your next Node.js project.
+🚀
 
 - User Authentication: Secure login system with JWT-based authentication.
 - Prisma ORM: Seamless database integration using Prisma.
@@ -41,9 +41,9 @@ Welcome to SecureAPI, a basic API project featuring a robust login system using 
 🏗️ Getting Started
 Prerequisites
 
-Node.js v20.x or later
-Docker & Docker Compose
-Prisma CLI
+- Node.js v20.x or later
+- Docker & Docker Compose
+- Prisma CLI
 
 Installation
 Clone the repository
