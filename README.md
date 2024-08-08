@@ -77,9 +77,9 @@ Start the API
 
     yarn dev
 
-/-
+Start with prisma migration
 
-    yarn start (lauch prisma migration)
+    yarn start
 
 🧪 Usage
 
