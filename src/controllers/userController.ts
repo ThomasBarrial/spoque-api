@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 // User Registration Function (already added)
 export const registerUser = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const { email, password, name, role, image } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ message: "Email and password are required" });
@@ -22,12 +22,22 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-      },
-    });
+    const user = await prisma.user
+      .create({
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+          role,
+          image, // optional
+        },
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(async () => {
+        await prisma.$disconnect();
+      });
 
     return res
       .status(201)
@@ -55,7 +65,11 @@ export const loginUser = async (req: Request, res: Response) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({
+        message: "Invalid credentials",
+        password: user.password,
+        passwordz: password,
+      });
     }
 
     const token = jwt.sign(
@@ -73,8 +87,29 @@ export const loginUser = async (req: Request, res: Response) => {
 
     res.set({ "Access-Control-Allow-Credentials": true });
 
-    return res.status(200).json({ token, userId: user.id });
+    return res.status(200).json({ token, user });
   } catch (error) {
     return res.status(500).json({ message: "Internal server error", error });
+  }
+};
+
+export const getOneUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { email } = req.params;
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (!user) return res.status(204);
+
+    return res.status(200).json({ user });
+  } catch (err) {
+    next(err);
   }
 };

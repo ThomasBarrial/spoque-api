@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 
 dotenv.config();
@@ -7,8 +8,14 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: [process.env.CLIENT || "http://localhost:3000"],
+  }),
+);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Use the user routes
 app.use("/api/users", userRoutes);
